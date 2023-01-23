@@ -24,9 +24,9 @@ public class Book {
     @Column(nullable = false)
     private Integer chapters;
     @Column(nullable = false)
-    private Spring isbn;
-    @Column(name = "publishedName", nullable = false, unique = true)
-    private String publishedName;
+    private String isbn;
+    @Column(name = "publisherName", nullable = false, unique = true)
+    private String publisherName;
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     //Facilitar de inserir ou modificar as informações do banco de dados
     @JoinColumn(name = "author_id")

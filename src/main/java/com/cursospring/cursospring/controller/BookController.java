@@ -1,9 +1,11 @@
 package com.cursospring.cursospring.controller;
 
+import com.cursospring.cursospring.dto.BookDTO;
 import com.cursospring.cursospring.dto.MessageResponseDTO;
 import com.cursospring.cursospring.entity.Book;
 import com.cursospring.cursospring.repository.BookRepository;
 import com.cursospring.cursospring.service.BookService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +22,7 @@ public class BookController {
     }
 
     @PostMapping
-    public MessageResponseDTO create(@RequestBody Book book){
-        return bookService.create(book);
+    public MessageResponseDTO create(@RequestBody @Valid BookDTO bookDTO){
+        return bookService.create(bookDTO);
     }
 }
