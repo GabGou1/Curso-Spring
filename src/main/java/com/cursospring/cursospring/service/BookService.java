@@ -3,6 +3,7 @@ package com.cursospring.cursospring.service;
 import com.cursospring.cursospring.dto.BookDTO;
 import com.cursospring.cursospring.dto.MessageResponseDTO;
 import com.cursospring.cursospring.entity.Book;
+import com.cursospring.cursospring.exception.BookNotFoundException;
 import com.cursospring.cursospring.mapper.BookMapper;
 import com.cursospring.cursospring.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ public class BookService {
         return MessageResponseDTO.builder().message("Book created with ID " + savedBook.getId()).build();
     }
 
-    public BookDTO findById(Long id){
-        Optional<Book> optionalBook = bookRepository.findById(id);
-        return bookMapper.toDTO(optionalBook.get());
+    public BookDTO findById(Long id) throws BookNotFoundException {
+        Book book = bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException(id));
+        return bookMapper.toDTO(book);
     }
 }

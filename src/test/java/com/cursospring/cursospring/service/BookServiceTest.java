@@ -2,14 +2,12 @@ package com.cursospring.cursospring.service;
 
 import com.cursospring.cursospring.dto.BookDTO;
 import com.cursospring.cursospring.entity.Book;
+import com.cursospring.cursospring.exception.BookNotFoundException;
 import com.cursospring.cursospring.repository.BookRepository;
-import com.cursospring.cursospring.utils.BookUtils;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
@@ -26,7 +24,7 @@ public class BookServiceTest {
     private BookService bookService;
 
     @Test
-    void WhenGivenExistingIdThenReturnThisBook() {
+    void WhenGivenExistingIdThenReturnThisBook() throws BookNotFoundException {
         Book expectedFoundBook = createFakeBook();
         when(bookRepository.findById(expectedFoundBook.getId())).thenReturn(Optional.of(expectedFoundBook));
         BookDTO bookDTO = bookService.findById(expectedFoundBook.getId());
