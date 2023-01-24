@@ -2,15 +2,10 @@ package com.cursospring.cursospring.controller;
 
 import com.cursospring.cursospring.dto.BookDTO;
 import com.cursospring.cursospring.dto.MessageResponseDTO;
-import com.cursospring.cursospring.entity.Book;
-import com.cursospring.cursospring.repository.BookRepository;
 import com.cursospring.cursospring.service.BookService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController //API Rest
 @RequestMapping("/api/v1/books") //endereço da aplicação
@@ -24,5 +19,10 @@ public class BookController {
     @PostMapping
     public MessageResponseDTO create(@RequestBody @Valid BookDTO bookDTO){
         return bookService.create(bookDTO);
+    }
+
+    @GetMapping("/{id}")
+    public BookDTO findById(@PathVariable Long id){
+        return bookService.findById(id);
     }
 }
