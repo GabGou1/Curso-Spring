@@ -9,8 +9,6 @@ import com.cursospring.cursospring.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class BookService {
     private BookRepository bookRepository;
